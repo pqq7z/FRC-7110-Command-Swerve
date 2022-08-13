@@ -10,20 +10,15 @@
 #include "Constants.h"
 
 SwerveModule::SwerveModule(int driveMotorChannel, int turningMotorChannel,
-                           const int driveEncoderPorts[],
                            const int turningEncoderPorts[],
-                           bool driveEncoderReversed,
-                           bool turningEncoderReversed)
-    : m_driveMotor(driveMotorChannel),
-      m_turningMotor(turningMotorChannel),
-      m_driveEncoder(driveEncoderPorts[0], driveEncoderPorts[1]),
-      m_turningEncoder(turningEncoderPorts[0], turningEncoderPorts[1]),
-      m_reverseDriveEncoder(driveEncoderReversed),
-      m_reverseTurningEncoder(turningEncoderReversed) {
+                           const double offset)
+    : m_driveMotor(driveMotorChannel, rev::CANSparkMax::MotorType::kBrushless),
+      m_turningMotor(turningMotorChannel, rev::CANSparkMax::MotorType::kBrushless),
+      m_turningEncoder(turningEncoderPorts[0], offset) {
   // Set the distance per pulse for the drive encoder. We can simply use the
   // distance traveled for one rotation of the wheel divided by the encoder
   // resolution.
-  m_driveEncoder.SetDistancePerPulse(
+  m_driveMotor.SetDistancePerPulse(
       ModuleConstants::kDriveEncoderDistancePerPulse);
 
   // Set the distance (in this case, angle) per pulse for the turning encoder.
@@ -39,7 +34,7 @@ SwerveModule::SwerveModule(int driveMotorChannel, int turningMotorChannel,
 }
 
 frc::SwerveModuleState SwerveModule::GetState() {
-  return {units::meters_per_second_t{m_driveEncoder.GetRate()},
+  return {units::meters_per_second_t{m_driveMotor.GetRate()},
           frc::Rotation2d(units::radian_t(m_turningEncoder.Get()))};
 }
 
@@ -51,7 +46,7 @@ void SwerveModule::SetDesiredState(
 
   // Calculate the drive output from the drive PID controller.
   const auto driveOutput = m_drivePIDController.Calculate(
-      m_driveEncoder.GetRate(), state.speed.value());
+      m_driveMotor.GetRate(), state.speed.value());
 
   // Calculate the turning motor output from the turning PID controller.
   auto turnOutput = m_turningPIDController.Calculate(
@@ -62,7 +57,7 @@ void SwerveModule::SetDesiredState(
   m_turningMotor.Set(turnOutput);
 }
 
-void SwerveModule::ResetEncoders() {
-  m_driveEncoder.Reset();
-  m_turningEncoder.Reset();
-}
+// void SwerveModule::ResetEncoders() {
+//   m_driveEncoder.Reset();
+//   m_turningEncoder.Reset();
+// }

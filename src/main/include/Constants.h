@@ -56,6 +56,11 @@ constexpr bool kRearLeftDriveEncoderReversed = true;
 constexpr bool kFrontRightDriveEncoderReversed = false;
 constexpr bool kRearRightDriveEncoderReversed = true;
 
+constexpr double kFrontLeftOffset = 0;
+constexpr double kRearLeftOffset = 0;
+constexpr double kFrontRightOffset = 0;
+constexpr double kRearRightOffset = 0;
+
 // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
 // These characterization values MUST be determined either experimentally or
 // theoretically for *your* robot's drive. The SysId tool provides a convenient
@@ -92,8 +97,8 @@ using radians_per_second_squared_t =
     units::compound_unit<units::radians,
                          units::inverse<units::squared<units::second>>>;
 
-constexpr auto kMaxSpeed = units::meters_per_second_t(3);
-constexpr auto kMaxAcceleration = units::meters_per_second_squared_t(3);
+constexpr auto kMaxSpeed = units::meters_per_second_t(4.4);
+constexpr auto kMaxAcceleration = units::meters_per_second_squared_t(4.4);
 constexpr auto kMaxAngularSpeed = units::radians_per_second_t(3.142);
 constexpr auto kMaxAngularAcceleration =
     units::unit_t<radians_per_second_squared_t>(3.142);

@@ -18,6 +18,7 @@
 
 #include "Constants.h"
 #include "SwerveModule.h"
+#include "pigeon_gyro.h"
 
 class DriveSubsystem : public frc2::SubsystemBase {
  public:
@@ -109,7 +110,8 @@ class DriveSubsystem : public frc2::SubsystemBase {
   SwerveModule m_rearRight;
 
   // The gyro sensor
-  frc::ADXRS450_Gyro m_gyro;
+//   frc::ADXRS450_Gyro m_gyro;
+  frc::pigeon_gyro m_gyro{0};
 
   // Odometry class for tracking robot pose
   // 4 defines the number of modules

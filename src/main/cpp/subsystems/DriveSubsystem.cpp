@@ -16,25 +16,20 @@ using namespace DriveConstants;
 DriveSubsystem::DriveSubsystem()
     : m_frontLeft{kFrontLeftDriveMotorPort,
                   kFrontLeftTurningMotorPort,
-                  kFrontLeftDriveEncoderPorts,
                   kFrontLeftTurningEncoderPorts,
-                  kFrontLeftDriveEncoderReversed,
-                  kFrontLeftTurningEncoderReversed},
+                  kFrontLeftOffset},
 
       m_rearLeft{
           kRearLeftDriveMotorPort,       kRearLeftTurningMotorPort,
-          kRearLeftDriveEncoderPorts,    kRearLeftTurningEncoderPorts,
-          kRearLeftDriveEncoderReversed, kRearLeftTurningEncoderReversed},
+          kRearLeftTurningEncoderPorts,  kRearRightOffset},
 
       m_frontRight{
           kFrontRightDriveMotorPort,       kFrontRightTurningMotorPort,
-          kFrontRightDriveEncoderPorts,    kFrontRightTurningEncoderPorts,
-          kFrontRightDriveEncoderReversed, kFrontRightTurningEncoderReversed},
+          kFrontRightTurningEncoderPorts,  kFrontRightOffset},
 
       m_rearRight{
           kRearRightDriveMotorPort,       kRearRightTurningMotorPort,
-          kRearRightDriveEncoderPorts,    kRearRightTurningEncoderPorts,
-          kRearRightDriveEncoderReversed, kRearRightTurningEncoderReversed},
+          kRearRightTurningEncoderPorts,  kRearRightOffset},
 
       m_odometry{kDriveKinematics, m_gyro.GetRotation2d(), frc::Pose2d()} {}
 
@@ -74,12 +69,12 @@ void DriveSubsystem::SetModuleStates(
   m_rearRight.SetDesiredState(desiredStates[3]);
 }
 
-void DriveSubsystem::ResetEncoders() {
-  m_frontLeft.ResetEncoders();
-  m_rearLeft.ResetEncoders();
-  m_frontRight.ResetEncoders();
-  m_rearRight.ResetEncoders();
-}
+// void DriveSubsystem::ResetEncoders() {
+//   m_frontLeft.ResetEncoders();
+//   m_rearLeft.ResetEncoders();
+//   m_frontRight.ResetEncoders();
+//   m_rearRight.ResetEncoders();
+// }
 
 units::degree_t DriveSubsystem::GetHeading() const {
   return m_gyro.GetRotation2d().Degrees();

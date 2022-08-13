@@ -14,6 +14,8 @@
 #include <wpi/numbers>
 
 #include "Constants.h"
+#include "NeoMotors.h"
+#include "CANCoder.h"
 
 class SwerveModule {
   using radians_per_second_squared_t =
@@ -22,8 +24,7 @@ class SwerveModule {
 
  public:
   SwerveModule(int driveMotorChannel, int turningMotorChannel,
-               const int driveEncoderPorts[2], const int turningEncoderPorts[2],
-               bool driveEncoderReversed, bool turningEncoderReversed);
+                const int turningEncoderPorts[2], const double offset);
 
   frc::SwerveModuleState GetState();
 
@@ -43,11 +44,9 @@ class SwerveModule {
           units::unit_t<radians_per_second_squared_t>(
               wpi::numbers::pi * 2.0);  // radians per second squared
 
-  frc::Spark m_driveMotor;
-  frc::Spark m_turningMotor;
-
-  frc::Encoder m_driveEncoder;
-  frc::Encoder m_turningEncoder;
+  FRC7110::NeoMotor m_driveMotor;
+  FRC7110::NeoMotor m_turningMotor;
+  FRC7110::CANcode m_turningEncoder;
 
   bool m_reverseDriveEncoder;
   bool m_reverseTurningEncoder;
