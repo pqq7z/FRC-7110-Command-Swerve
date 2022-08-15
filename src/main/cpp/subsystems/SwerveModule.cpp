@@ -10,22 +10,24 @@
 #include "Constants.h"
 
 SwerveModule::SwerveModule(int driveMotorChannel, int turningMotorChannel,
-                           const int turningEncoderPorts[],
+                           const int turningEncoderPorts,
                            const double offset)
     : m_driveMotor(driveMotorChannel, rev::CANSparkMax::MotorType::kBrushless),
       m_turningMotor(turningMotorChannel, rev::CANSparkMax::MotorType::kBrushless),
-      m_turningEncoder(turningEncoderPorts[0], offset) {
+      m_turningEncoder(turningEncoderPorts, offset) {
   // Set the distance per pulse for the drive encoder. We can simply use the
   // distance traveled for one rotation of the wheel divided by the encoder
   // resolution.
   m_driveMotor.SetDistancePerPulse(
       ModuleConstants::kDriveEncoderDistancePerPulse);
+  //this code does not do anything and should be removed in final versions
 
   // Set the distance (in this case, angle) per pulse for the turning encoder.
   // This is the the angle through an entire rotation (2 * wpi::numbers::pi)
   // divided by the encoder resolution.
   m_turningEncoder.SetDistancePerPulse(
       ModuleConstants::kTurningEncoderDistancePerPulse);
+  //this code does not do anything and should be removed in final versions
 
   // Limit the PID Controller's input range between -pi and pi and set the input
   // to be continuous.
@@ -53,11 +55,12 @@ void SwerveModule::SetDesiredState(
       units::radian_t(m_turningEncoder.Get()), state.angle.Radians());
 
   // Set the motor outputs.
-  m_driveMotor.Set(driveOutput);
-  m_turningMotor.Set(turnOutput);
+  if(fabs(state.speed.value()) < 0.001) {
+    m_driveMotor.Set(0);
+    m_turningMotor.Set(0);
+  }
+  else {
+    m_driveMotor.Set(driveOutput);
+    m_turningMotor.Set(turnOutput);
+  }
 }
-
-// void SwerveModule::ResetEncoders() {
-//   m_driveEncoder.Reset();
-//   m_turningEncoder.Reset();
-// }

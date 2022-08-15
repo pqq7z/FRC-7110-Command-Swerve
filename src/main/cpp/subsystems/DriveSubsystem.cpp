@@ -69,13 +69,6 @@ void DriveSubsystem::SetModuleStates(
   m_rearRight.SetDesiredState(desiredStates[3]);
 }
 
-// void DriveSubsystem::ResetEncoders() {
-//   m_frontLeft.ResetEncoders();
-//   m_rearLeft.ResetEncoders();
-//   m_frontRight.ResetEncoders();
-//   m_rearRight.ResetEncoders();
-// }
-
 units::degree_t DriveSubsystem::GetHeading() const {
   return m_gyro.GetRotation2d().Degrees();
 }

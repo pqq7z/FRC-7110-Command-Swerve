@@ -26,35 +26,20 @@
  */
 
 namespace DriveConstants {
-constexpr int kFrontLeftDriveMotorPort = 0;
+constexpr int kFrontLeftDriveMotorPort = 1;
 constexpr int kRearLeftDriveMotorPort = 2;
-constexpr int kFrontRightDriveMotorPort = 4;
-constexpr int kRearRightDriveMotorPort = 6;
+constexpr int kFrontRightDriveMotorPort = 3;
+constexpr int kRearRightDriveMotorPort = 4;
 
-constexpr int kFrontLeftTurningMotorPort = 1;
-constexpr int kRearLeftTurningMotorPort = 3;
-constexpr int kFrontRightTurningMotorPort = 5;
-constexpr int kRearRightTurningMotorPort = 7;
+constexpr int kFrontLeftTurningMotorPort = 5;
+constexpr int kRearLeftTurningMotorPort = 6;
+constexpr int kFrontRightTurningMotorPort = 7;
+constexpr int kRearRightTurningMotorPort = 8;
 
-constexpr int kFrontLeftTurningEncoderPorts[2]{0, 1};
-constexpr int kRearLeftTurningEncoderPorts[2]{2, 3};
-constexpr int kFrontRightTurningEncoderPorts[2]{4, 5};
-constexpr int kRearRightTurningEncoderPorts[2]{6, 7};
-
-constexpr bool kFrontLeftTurningEncoderReversed = false;
-constexpr bool kRearLeftTurningEncoderReversed = true;
-constexpr bool kFrontRightTurningEncoderReversed = false;
-constexpr bool kRearRightTurningEncoderReversed = true;
-
-constexpr int kFrontLeftDriveEncoderPorts[2]{8, 9};
-constexpr int kRearLeftDriveEncoderPorts[2]{10, 11};
-constexpr int kFrontRightDriveEncoderPorts[2]{12, 13};
-constexpr int kRearRightDriveEncoderPorts[2]{14, 15};
-
-constexpr bool kFrontLeftDriveEncoderReversed = false;
-constexpr bool kRearLeftDriveEncoderReversed = true;
-constexpr bool kFrontRightDriveEncoderReversed = false;
-constexpr bool kRearRightDriveEncoderReversed = true;
+constexpr int kFrontLeftTurningEncoderPorts = 9;
+constexpr int kRearLeftTurningEncoderPorts = 10;
+constexpr int kFrontRightTurningEncoderPorts = 11;
+constexpr int kRearRightTurningEncoderPorts = 12;
 
 constexpr double kFrontLeftOffset = 0;
 constexpr double kRearLeftOffset = 0;
@@ -77,6 +62,7 @@ constexpr double kPRearRightVel = 0.5;
 }  // namespace DriveConstants
 
 namespace ModuleConstants {
+// this namespace is not neccesary in most regards and should be removed in final versions
 constexpr int kEncoderCPR = 1024;
 constexpr double kWheelDiameterMeters = 0.15;
 constexpr double kDriveEncoderDistancePerPulse =

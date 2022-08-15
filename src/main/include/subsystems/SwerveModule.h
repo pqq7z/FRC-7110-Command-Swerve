@@ -24,7 +24,7 @@ class SwerveModule {
 
  public:
   SwerveModule(int driveMotorChannel, int turningMotorChannel,
-                const int turningEncoderPorts[2], const double offset);
+                const int turningEncoderPorts, const double offset);
 
   frc::SwerveModuleState GetState();
 
@@ -47,9 +47,6 @@ class SwerveModule {
   FRC7110::NeoMotor m_driveMotor;
   FRC7110::NeoMotor m_turningMotor;
   FRC7110::CANcode m_turningEncoder;
-
-  bool m_reverseDriveEncoder;
-  bool m_reverseTurningEncoder;
 
   frc2::PIDController m_drivePIDController{
       ModuleConstants::kPModuleDriveController, 0, 0};
