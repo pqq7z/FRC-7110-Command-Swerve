@@ -7,16 +7,25 @@ namespace FRC7110 {
   class NeoMotor : public rev::CANSparkMax, public rev::SparkMaxRelativeEncoder{
     public:
     
-      explicit NeoMotor(const int Id, rev::CANSparkMax::MotorType type) : rev::CANSparkMax(Id, type), rev::SparkMaxRelativeEncoder(GetEncoder()){}
+      explicit NeoMotor(int Id, rev::CANSparkMax::MotorType type);
 
-      void SetDistancePerPulse(double DPP){}
+      /**
+       * @brief this method is used to set the conversion from RPM to MPS
+       * to do this we get the gear ratio * 2pi * wheel diameter(meters)
+       * 
+       * @param ratio
+       */
+      void SetRPM2MPS(double Ratio);
 
-      double GetRate() {
-        double mps = (GetVelocity()/60) * 1/6.75 * 2 * wpi::numbers::pi * 0.1016;
+      /**
+       * @brief calling this function will multiply the rotations per second of the
+       * motor by the set ratio of RPM2MPS set in the SetRPM2MPS method
+       * 
+       * @return Meters per second
+       */
+      double GetRate();
 
-        // mps = motor rpm /60 (to make rps) * 1/6.75 (to account for gear ratio) * 2pi * 0.1016 (for wheel size)
-
-        return mps;
-      }
+    private:
+      double m_Ratio = 1;
   }; // class NeoMotor
 } // namespace FRC7110

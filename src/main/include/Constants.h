@@ -62,17 +62,10 @@ constexpr double kPRearRightVel = 0.5;
 }  // namespace DriveConstants
 
 namespace ModuleConstants {
-// this namespace is not neccesary in most regards and should be removed in final versions
-constexpr int kEncoderCPR = 1024;
-constexpr double kWheelDiameterMeters = 0.15;
+constexpr double kGearRatio = 1/6.75;
+constexpr double kWheelDiameterMeters = 0.1016;
 constexpr double kDriveEncoderDistancePerPulse =
-    // Assumes the encoders are directly mounted on the wheel shafts
-    (kWheelDiameterMeters * wpi::numbers::pi) /
-    static_cast<double>(kEncoderCPR);
-
-constexpr double kTurningEncoderDistancePerPulse =
-    // Assumes the encoders are directly mounted on the wheel shafts
-    (wpi::numbers::pi * 2) / static_cast<double>(kEncoderCPR);
+kGearRatio * 2 * wpi::numbers::pi * kWheelDiameterMeters;
 
 constexpr double kPModuleTurningController = 1;
 constexpr double kPModuleDriveController = 1;

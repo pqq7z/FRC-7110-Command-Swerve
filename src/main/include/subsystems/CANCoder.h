@@ -6,18 +6,15 @@
 namespace FRC7110{
   class CANcode : CANCoder{
     public:
-      explicit CANcode(const int id, const double offset) : CANCoder(id), m_offset(offset){};
-      
-      void SetDistancePerPulse(const double DPP){}
+      explicit CANcode(const int id, const double offset);
 
-      double Get() {
-
-        double degPos = GetPosition() - m_offset;
-
-        double radPos = (degPos/360) * 2 * wpi::numbers::pi - wpi::numbers::pi;
-
-        return radPos;
-      }
+      /**
+       * @brief gets the positon of the encoder from -pi to pi
+       * and applies the offset
+       * 
+       * @return -pi , pi (double)
+       */
+      double Get();
 
       private:
 
