@@ -14,4 +14,7 @@
     "**/.factorypath": true,
     "**/*~": true
   },
+  "files.associations": {
+    "functional": "cpp"
+  },
 }

@@ -25,6 +25,7 @@ using namespace DriveConstants;
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+  frc::SmartDashboard::PutNumber("Auto", 1);
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -69,8 +70,19 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   thetaController.EnableContinuousInput(units::radian_t(-wpi::numbers::pi),
                                         units::radian_t(wpi::numbers::pi));
 
+  m_Routine = frc::SmartDashboard::GetNumber("Auto", 0);
+
+  switch (m_Routine) {
+    case 1:
+    m_SelectedTrajectory = exampleTrajectory;
+    break;
+    case 2:
+    m_SelectedTrajectory = m_auto.GetTrajectory();
+  }
+
+
   frc2::SwerveControllerCommand<4> swerveControllerCommand(
-      exampleTrajectory, [this]() { return m_drive.GetPose(); },
+      m_SelectedTrajectory, [this]() { return m_drive.GetPose(); },
 
       m_drive.kDriveKinematics,
 
@@ -82,7 +94,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       {&m_drive});
 
   // Reset odometry to the starting pose of the trajectory.
-  m_drive.ResetOdometry(exampleTrajectory.InitialPose());
+  m_drive.ResetOdometry(m_SelectedTrajectory.InitialPose());
 
   // no auto
   return new frc2::SequentialCommandGroup(
