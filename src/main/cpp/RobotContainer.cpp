@@ -13,15 +13,19 @@
 #include <frc/trajectory/TrajectoryGenerator.h>
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/ParallelCommandGroup.h>
 #include <frc2/command/SwerveControllerCommand.h>
 #include <frc2/command/button/JoystickButton.h>
 #include <units/angle.h>
 #include <units/velocity.h>
+#include <frc/filter/SlewRateLimiter.h>
 
 #include "Constants.h"
 #include "subsystems/DriveSubsystem.h"
 
 using namespace DriveConstants;
+
+
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -29,6 +33,9 @@ RobotContainer::RobotContainer() {
 
   // Configure the button bindings
   ConfigureButtonBindings();
+  
+
+ 
 
   // Set up default drive command
   // The left stick controls translation of the robot.
@@ -36,9 +43,9 @@ RobotContainer::RobotContainer() {
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
         m_drive.Drive(
-            units::meters_per_second_t(m_driverController.GetLeftY()),
-            units::meters_per_second_t(m_driverController.GetLeftX()),
-            units::radians_per_second_t(m_driverController.GetRightX()), false);
+            units::meters_per_second_t(ySpeed),
+            units::meters_per_second_t(xSpeed),
+            units::radians_per_second_t(rot), true);
       },
       {&m_drive}));
 }
@@ -72,12 +79,14 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
   m_Routine = frc::SmartDashboard::GetNumber("Auto", 0);
 
+  //switch to make it easy to add additions
   switch (m_Routine) {
     case 1:
     m_SelectedTrajectory = exampleTrajectory;
     break;
     case 2:
     m_SelectedTrajectory = m_auto.GetTrajectory();
+    break;
   }
 
 
@@ -96,7 +105,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // Reset odometry to the starting pose of the trajectory.
   m_drive.ResetOdometry(m_SelectedTrajectory.InitialPose());
 
-  // no auto
+  // no auto // I do not know why this says no auto although I have heard issues about this auto here
+  // I think that for actualy robot code that will include important things like shooting in 2023
+  // will have a "wrapper" command group to run multiple actions at once using parellel command group
   return new frc2::SequentialCommandGroup(
       std::move(swerveControllerCommand),
       frc2::InstantCommand(

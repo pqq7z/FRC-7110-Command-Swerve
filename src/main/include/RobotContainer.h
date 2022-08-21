@@ -14,6 +14,7 @@
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/RunCommand.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/filter/SlewRateLimiter.h>
 
 #include "Constants.h"
 #include "subsystems/DriveSubsystem.h"
@@ -39,6 +40,18 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   Auto1 m_auto;
+
+  // I know there is a better way of doing this but quite frankly I don't care becuase the drive function in so god damn annoying in command based
+  // normally I would just put this where it is neccesary but some weird things with lamda values made it not work 
+
+  frc::SlewRateLimiter<units::scalar> m_speedLimitx{3 / 1_s};
+  frc::SlewRateLimiter<units::scalar> m_speedLimity{3 / 1_s};
+  frc::SlewRateLimiter<units::scalar> m_speedLimitz{3 / 1_s};
+
+  double ySpeed = m_speedLimitx.Calculate(frc::ApplyDeadband(m_driverController.GetLeftY(), 0.05));
+  double xSpeed = m_speedLimity.Calculate(frc::ApplyDeadband(m_driverController.GetLeftX(), 0.05));
+  double rot = m_speedLimitz.Calculate(frc::ApplyDeadband(m_driverController.GetRightX(), 0.05));
+
 
   // The robot's subsystems
   DriveSubsystem m_drive;

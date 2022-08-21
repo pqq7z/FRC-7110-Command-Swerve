@@ -6,7 +6,12 @@
 class Auto1 {
   public:
     Auto1();
-  
+
+    /**
+     * @brief Gets the trajectory of Pathplanner Path as frc::Trajectory
+     * 
+     * @return frc::Trajectory (the path)
+     */
     frc::Trajectory GetTrajectory();
 
   private:
