@@ -2,6 +2,8 @@
 
 #include <rev/CANSparkMax.h>
 #include <wpi/numbers>
+#include <frc/controller/BangBangController.h>
+#include <frc/controller/PIDController.h>
 
 namespace FRC7110 {
   class NeoMotor : public rev::CANSparkMax, public rev::SparkMaxRelativeEncoder{
@@ -15,7 +17,7 @@ namespace FRC7110 {
        * 
        * @param ratio
        */
-      void SetRPM2MPS(double Ratio);
+      void SetRPM2MPS(double);
 
       /**
        * @brief calling this function will multiply the rotations per second of the
@@ -25,7 +27,23 @@ namespace FRC7110 {
        */
       double GetRate();
 
+      /**
+       * @brief Sets the Motor RPM using frc::BangBangController
+       * 
+       * @param RPM 
+       */
+      void SetRPMBB(double);
+
+      /**
+       * @brief Sets the Motor RPM using frc2::PIDController
+       * 
+       * @param RPM
+       */
+      void SetRPMpid(double);
+
     private:
       double m_Ratio = 1;
+      frc::BangBangController m_controller;
+      frc2::PIDController m_PID{1 , 0 , 0};
   }; // class NeoMotor
 } // namespace FRC7110
