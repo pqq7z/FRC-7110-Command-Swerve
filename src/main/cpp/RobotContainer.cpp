@@ -43,9 +43,9 @@ RobotContainer::RobotContainer() {
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
         m_drive.Drive(
-            units::meters_per_second_t(ySpeed),
-            units::meters_per_second_t(xSpeed),
-            units::radians_per_second_t(rot), true);
+            units::meters_per_second_t(ySpeed * AutoConstants::kMaxSpeed),
+            units::meters_per_second_t(xSpeed * AutoConstants::kMaxSpeed),
+            units::radians_per_second_t(rot * AutoConstants::kMaxAngularSpeed), true);
       },
       {&m_drive}));
 }
@@ -108,7 +108,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // no auto // I do not know why this says no auto although I have heard issues about this auto here
   // I think that for actualy robot code that will include important things like shooting in 2023
   // will have a "wrapper" command group to run multiple actions at once using parellel command group
-  return new frc2::SequentialCommandGroup(
+  return new frc2::ParallelCommandGroup(
+  frc2::SequentialCommandGroup(
       std::move(swerveControllerCommand),
       frc2::InstantCommand(
           [this]() {
@@ -116,5 +117,5 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
                           units::meters_per_second_t(0),
                           units::radians_per_second_t(0), false);
           },
-          {}));
+          {})));
 }
