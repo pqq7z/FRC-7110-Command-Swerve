@@ -9,20 +9,20 @@ rev::CANSparkMax(Id, type), rev::SparkMaxRelativeEncoder(GetEncoder()){
   BurnFlash();}
 }
 
-void NeoMotor::SetRPM2MPS(const double Ratio) {
+void NeoMotor::SetRPM2MPS(const double& Ratio){
   m_Ratio = Ratio;
 }
 
-double NeoMotor::GetRate() {
+double NeoMotor::GetRate() const {
   double mps = (GetVelocity()/60) * m_Ratio;
 
   return mps;
 }
 
-void NeoMotor::SetRPMBB(double RPM) {
+void NeoMotor::SetRPMBB(double& RPM) {
   Set(m_controller.Calculate(GetVelocity(), RPM));
 }
 
-void NeoMotor::SetRPMpid(double RPM) {
+void NeoMotor::SetRPMpid(double& RPM) {
   Set(m_PID.Calculate(GetVelocity(), RPM));
 }

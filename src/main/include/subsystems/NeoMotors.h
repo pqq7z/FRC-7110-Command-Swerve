@@ -9,7 +9,7 @@ namespace FRC7110 {
   class NeoMotor : public rev::CANSparkMax, public rev::SparkMaxRelativeEncoder{
     public:
     
-      explicit NeoMotor(int Id, rev::CANSparkMax::MotorType type);
+      explicit NeoMotor(const int Id, rev::CANSparkMax::MotorType type);
 
       /**
        * @brief this method is used to set the conversion from RPM to MPS
@@ -17,7 +17,7 @@ namespace FRC7110 {
        * 
        * @param ratio
        */
-      void SetRPM2MPS(double);
+      void SetRPM2MPS(const double&);
 
       /**
        * @brief calling this function will multiply the rotations per second of the
@@ -25,21 +25,21 @@ namespace FRC7110 {
        * 
        * @return Meters per second
        */
-      double GetRate();
+      double GetRate() const;
 
       /**
        * @brief Sets the Motor RPM using frc::BangBangController
        * 
        * @param RPM 
        */
-      void SetRPMBB(double);
+      void SetRPMBB(double&);
 
       /**
        * @brief Sets the Motor RPM using frc2::PIDController
        * 
        * @param RPM
        */
-      void SetRPMpid(double);
+      void SetRPMpid(double&);
 
     private:
       double m_Ratio = 1;
