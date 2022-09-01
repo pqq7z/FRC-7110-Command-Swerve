@@ -15,10 +15,5 @@ namespace FRC7110{
        * @return -pi , pi (double)
        */
       double Get();
-
-      private:
-
-        const double m_offset;
-        
     };
 } // namespace FRC7110

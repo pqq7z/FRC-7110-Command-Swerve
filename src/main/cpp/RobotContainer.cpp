@@ -30,12 +30,11 @@ using namespace DriveConstants;
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   frc::SmartDashboard::PutNumber("Auto", 1);
+  frc::SmartDashboard::PutNumber("Turn Rate", m_drive.GetTurnRate());
+  frc::SmartDashboard::PutNumber("Heading", m_drive.GetHeading().value());
 
   // Configure the button bindings
   ConfigureButtonBindings();
-  
-
- 
 
   // Set up default drive command
   // The left stick controls translation of the robot.
@@ -50,7 +49,11 @@ RobotContainer::RobotContainer() {
       {&m_drive}));
 }
 
-void RobotContainer::ConfigureButtonBindings() {}
+void RobotContainer::ConfigureButtonBindings() {
+  if (m_driverController.GetLeftBumperPressed())
+    m_drive.ZeroHeading();
+
+}
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // Set up config for trajectory
