@@ -18,7 +18,7 @@
 
 #include "Constants.h"
 #include "subsystems/DriveSubsystem.h"
-#include "commands/Auto1.h"
+#include "commands/AutoRoutines.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -39,7 +39,7 @@ class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
 
-  Auto1 m_auto;
+  Auto m_auto;
 
   // I know there is a better way of doing this but quite frankly I don't care becuase the drive function in so god damn annoying in command based
   // normally I would just put this where it is neccesary but some weird things with lamda values made it not work 

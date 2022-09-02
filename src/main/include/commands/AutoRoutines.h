@@ -3,17 +3,15 @@
 #include <pathplanner/lib/PathPlanner.h>
 #include <frc/trajectory/Trajectory.h>
 
-class Auto1 {
+class Auto {
   public:
-    Auto1();
+    Auto();
 
     /**
      * @brief Gets the trajectory of Pathplanner Path as frc::Trajectory
      * 
      * @return frc::Trajectory (the path)
      */
-    frc::Trajectory GetTrajectory();
+    frc::Trajectory GetTrajectory1();
 
-  private:
-    frc::Trajectory m_Trajectory;
 };

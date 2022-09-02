@@ -9,7 +9,7 @@ namespace FRC7110 {
   class NeoMotor : public rev::CANSparkMax, public rev::SparkMaxRelativeEncoder{
     public:
     
-      explicit NeoMotor(const int Id, rev::CANSparkMax::MotorType type);
+      explicit NeoMotor(const int& Id, rev::CANSparkMax::MotorType type);
 
       /**
        * @brief this method is used to set the conversion from RPM to MPS

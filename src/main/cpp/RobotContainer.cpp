@@ -88,7 +88,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     m_SelectedTrajectory = exampleTrajectory;
     break;
     case 2:
-    m_SelectedTrajectory = m_auto.GetTrajectory();
+    m_SelectedTrajectory = m_auto.GetTrajectory1();
     break;
   }
 

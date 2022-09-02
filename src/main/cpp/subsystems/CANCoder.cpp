@@ -2,7 +2,7 @@
 
 using namespace FRC7110;
 
-CANcode::CANcode(const int Id, const double offset) : CANCoder(Id){
+CANcode::CANcode(const int& Id, const double& offset) : CANCoder(Id){
   ConfigSensorInitializationStrategy(BootToAbsolutePosition);
   ConfigMagnetOffset(offset);
 }

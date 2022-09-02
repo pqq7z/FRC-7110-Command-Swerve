@@ -2,7 +2,7 @@
 
 using namespace FRC7110;
 
-NeoMotor::NeoMotor(const int Id, rev::CANSparkMax::MotorType type) : 
+NeoMotor::NeoMotor(const int& Id, rev::CANSparkMax::MotorType type) : 
 rev::CANSparkMax(Id, type), rev::SparkMaxRelativeEncoder(GetEncoder()){
   if (GetIdleMode() != rev::CANSparkMax::IdleMode::kCoast) {
   SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 

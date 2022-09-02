@@ -6,7 +6,7 @@
 namespace FRC7110{
   class CANcode : CANCoder{
     public:
-      explicit CANcode(const int id, const double offset);
+      explicit CANcode(const int& id, const double& offset);
 
       /**
        * @brief gets the positon of the encoder from -pi to pi
