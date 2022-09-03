@@ -32,6 +32,7 @@ RobotContainer::RobotContainer() {
   frc::SmartDashboard::PutNumber("Auto", 1);
   frc::SmartDashboard::PutNumber("Turn Rate", m_drive.GetTurnRate());
   frc::SmartDashboard::PutNumber("Heading", m_drive.GetHeading().value());
+  frc::SmartDashboard::PutBoolean("Field Realative", m_FieldRealative);
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -44,7 +45,7 @@ RobotContainer::RobotContainer() {
         m_drive.Drive(
             units::meters_per_second_t(ySpeed * AutoConstants::kMaxSpeed),
             units::meters_per_second_t(xSpeed * AutoConstants::kMaxSpeed),
-            units::radians_per_second_t(rot * AutoConstants::kMaxAngularSpeed), true);
+            units::radians_per_second_t(rot * AutoConstants::kMaxAngularSpeed), m_FieldRealative);
       },
       {&m_drive}));
 }
@@ -52,6 +53,8 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureButtonBindings() {
   frc2::JoystickButton(&m_driverController, frc::XboxController::Button::kLeftBumper).WhenPressed(
     frc2::RunCommand([this] {m_drive.ZeroHeading();}, {&m_drive}));
+  frc2::JoystickButton(&m_driverController, frc::XboxController::Button::kRightBumper).WhenPressed(
+    [&] {m_FieldRealative = m_FieldRealative ? false : true;});
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

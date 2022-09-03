@@ -41,9 +41,6 @@ class RobotContainer {
 
   Auto m_auto;
 
-  // I know there is a better way of doing this but quite frankly I don't care becuase the drive function in so god damn annoying in command based
-  // normally I would just put this where it is neccesary but some weird things with lamda values made it not work 
-
   frc::SlewRateLimiter<units::scalar> m_speedLimitx{3 / 1_s};
   frc::SlewRateLimiter<units::scalar> m_speedLimity{3 / 1_s};
   frc::SlewRateLimiter<units::scalar> m_speedLimitz{3 / 1_s};
@@ -52,6 +49,7 @@ class RobotContainer {
   double xSpeed = m_speedLimity.Calculate(frc::ApplyDeadband(m_driverController.GetLeftX(), 0.05));
   double rot = m_speedLimitz.Calculate(frc::ApplyDeadband(m_driverController.GetRightX(), 0.05));
 
+  bool m_FieldRealative = true;
 
   // The robot's subsystems
   DriveSubsystem m_drive;
