@@ -50,9 +50,8 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureButtonBindings() {
-  if (m_driverController.GetLeftBumperPressed())
-    m_drive.ZeroHeading();
-
+  frc2::JoystickButton(&m_driverController, frc::XboxController::Button::kLeftBumper).WhenPressed(
+    frc2::RunCommand([this] {m_drive.ZeroHeading();}, {&m_drive}));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
