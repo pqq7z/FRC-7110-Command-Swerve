@@ -12,6 +12,7 @@
 #include "Constants.h"
 
 using namespace DriveConstants;
+using namespace DriveConstants::CanIds;
 
 DriveSubsystem::DriveSubsystem()
     : m_frontLeft{kFrontLeftDriveMotorPort,

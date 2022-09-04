@@ -5,6 +5,7 @@ using namespace FRC7110;
 CANcode::CANcode(const int& Id, const double& offset) : CANCoder(Id){
   ConfigSensorInitializationStrategy(BootToAbsolutePosition);
   ConfigMagnetOffset(offset);
+  printf("CANCoder: %i, reading %5.2f\n", Id, GetAbsolutePosition());
 }
 
 double CANcode::Get() {

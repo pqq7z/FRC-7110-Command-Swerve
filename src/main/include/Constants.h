@@ -26,39 +26,30 @@
  */
 
 namespace DriveConstants {
-constexpr int kFrontLeftDriveMotorPort = 1;
-constexpr int kRearLeftDriveMotorPort = 2;
-constexpr int kFrontRightDriveMotorPort = 3;
-constexpr int kRearRightDriveMotorPort = 4;
+    namespace CanIds{
+    constexpr int kFrontLeftDriveMotorPort = 5;
+    constexpr int kRearLeftDriveMotorPort = 7;
+    constexpr int kFrontRightDriveMotorPort = 9;
+    constexpr int kRearRightDriveMotorPort = 11;
 
-constexpr int kFrontLeftTurningMotorPort = 5;
-constexpr int kRearLeftTurningMotorPort = 6;
-constexpr int kFrontRightTurningMotorPort = 7;
-constexpr int kRearRightTurningMotorPort = 8;
+    constexpr int kFrontLeftTurningMotorPort = 6;
+    constexpr int kRearLeftTurningMotorPort = 8;
+    constexpr int kFrontRightTurningMotorPort = 10;
+    constexpr int kRearRightTurningMotorPort = 12;
 
-constexpr int kFrontLeftTurningEncoderPorts = 9;
-constexpr int kRearLeftTurningEncoderPorts = 10;
-constexpr int kFrontRightTurningEncoderPorts = 11;
-constexpr int kRearRightTurningEncoderPorts = 12;
+    constexpr int kFrontLeftTurningEncoderPorts = 1;
+    constexpr int kRearLeftTurningEncoderPorts = 2;
+    constexpr int kFrontRightTurningEncoderPorts = 3;
+    constexpr int kRearRightTurningEncoderPorts = 4;
+
+    const int kPidgeonID = 0;
+    } // namespace CanIds
 
 constexpr double kFrontLeftOffset = 0;
 constexpr double kRearLeftOffset = 0;
 constexpr double kFrontRightOffset = 0;
 constexpr double kRearRightOffset = 0;
 
-// These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
-// These characterization values MUST be determined either experimentally or
-// theoretically for *your* robot's drive. The SysId tool provides a convenient
-// method for obtaining these values for your robot.
-constexpr auto ks = 1_V;
-constexpr auto kv = 0.8 * 1_V * 1_s / 1_m;
-constexpr auto ka = 0.15 * 1_V * 1_s * 1_s / 1_m;
-
-// Example value only - as above, this must be tuned for your drive!
-constexpr double kPFrontLeftVel = 0.5;
-constexpr double kPRearLeftVel = 0.5;
-constexpr double kPFrontRightVel = 0.5;
-constexpr double kPRearRightVel = 0.5;
 }  // namespace DriveConstants
 
 namespace ModuleConstants {
@@ -79,14 +70,13 @@ using radians_per_second_squared_t =
 constexpr auto kMaxSpeed = units::meters_per_second_t(4.4);
 constexpr auto kMaxAcceleration = units::meters_per_second_squared_t(4.4);
 constexpr auto kMaxAngularSpeed = units::radians_per_second_t(3.142);
-constexpr auto kMaxAngularAcceleration =
-    units::unit_t<radians_per_second_squared_t>(3.142);
+constexpr auto kMaxAngularAcceleration = units::unit_t<radians_per_second_squared_t>(3.142);
 
 constexpr double kPXController = 0.5;
 constexpr double kPYController = 0.5;
 constexpr double kPThetaController = 0.5;
 
-//
+
 
 extern const frc::TrapezoidProfile<units::radians>::Constraints
     kThetaControllerConstraints;

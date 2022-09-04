@@ -49,7 +49,7 @@ class RobotContainer {
   double xSpeed = m_speedLimity.Calculate(frc::ApplyDeadband(m_driverController.GetLeftX(), 0.05));
   double rot = m_speedLimitz.Calculate(frc::ApplyDeadband(m_driverController.GetRightX(), 0.05));
 
-  bool m_FieldRealative = true;
+  bool m_FieldRelative = true;
 
   // The robot's subsystems
   DriveSubsystem m_drive;

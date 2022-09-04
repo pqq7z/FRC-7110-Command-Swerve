@@ -110,8 +110,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
   SwerveModule m_rearRight;
 
   // The gyro sensor
-//   frc::ADXRS450_Gyro m_gyro;
-  frc::pigeon_gyro m_gyro{0};
+  frc::pigeon_gyro m_gyro{DriveConstants::CanIds::kPidgeonID};
 
   // Odometry class for tracking robot pose
   // 4 defines the number of modules
