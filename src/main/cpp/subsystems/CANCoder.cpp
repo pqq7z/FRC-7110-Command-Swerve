@@ -9,6 +9,5 @@ CANcode::CANcode(const int& Id, const double& offset) : CANCoder(Id){
 }
 
 double CANcode::Get() {
-  double radPos = (GetPosition()/360) * 2 * wpi::numbers::pi - wpi::numbers::pi;
-  return radPos;
+  return (GetPosition()/360) * 2 * wpi::numbers::pi - wpi::numbers::pi; // Returns radians
 }

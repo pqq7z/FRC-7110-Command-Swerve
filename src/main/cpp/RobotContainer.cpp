@@ -32,7 +32,7 @@ RobotContainer::RobotContainer() {
   frc::SmartDashboard::PutNumber("Auto", 1);
   frc::SmartDashboard::PutNumber("Turn Rate", m_drive.GetTurnRate());
   frc::SmartDashboard::PutNumber("Heading", m_drive.GetHeading().value());
-  frc::SmartDashboard::PutBoolean("Field Realative", m_FieldRelative);
+  frc::SmartDashboard::PutBoolean("Field Relative", m_FieldRelative);
 
   // Configure the button bindings
   ConfigureButtonBindings();

@@ -14,9 +14,7 @@ void NeoMotor::SetRPM2MPS(const double& Ratio){
 }
 
 double NeoMotor::GetRate() const {
-  double mps = (GetVelocity()/60) * m_Ratio;
-
-  return mps;
+  return (GetVelocity()/60) * m_Ratio;
 }
 
 void NeoMotor::SetRPMBB(double& RPM) {
