@@ -37,18 +37,9 @@ RobotContainer::RobotContainer() {
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  // Set up default drive command
-  // The left stick controls translation of the robot.
-  // Turning is controlled by the X axis of the right stick.
-  m_drive.SetDefaultCommand(frc2::RunCommand(
-      [this] {
-        m_drive.Drive(
-            units::meters_per_second_t(ySpeed * AutoConstants::kMaxSpeed),
-            units::meters_per_second_t(xSpeed * AutoConstants::kMaxSpeed),
-            units::radians_per_second_t(rot * AutoConstants::kMaxAngularSpeed),
-            m_FieldRelative);
-      },
-      {&m_drive}));
+  m_drive.SetDefaultCommand(DefaultDriveCMD(&m_drive, [this] {return xSpeed;}, 
+          [this] {return ySpeed;}, [this] {return rot;}, m_FieldRelative));
+
 }
 
 void RobotContainer::ConfigureButtonBindings() {
