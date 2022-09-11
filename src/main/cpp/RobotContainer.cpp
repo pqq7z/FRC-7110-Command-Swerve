@@ -38,7 +38,7 @@ RobotContainer::RobotContainer() {
   ConfigureButtonBindings();
 
   m_drive.SetDefaultCommand(DefaultDriveCMD(&m_drive, [this] {return xSpeed;}, 
-          [this] {return ySpeed;}, [this] {return rot;}, m_FieldRelative));
+          [this] {return ySpeed;}, [this] {return rot;}, [this] {return m_FieldRelative;}));
 
 }
 

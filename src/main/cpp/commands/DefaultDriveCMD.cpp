@@ -8,8 +8,9 @@
 using namespace units::velocity;
 using namespace units::angular_velocity;
 
-DefaultDriveCMD::DefaultDriveCMD(DriveSubsystem* subsystem, std::function<double()> x, std::function<double()> y, std::function<double()> rot, bool field = true) :
-  m_subsystem(subsystem), m_x(std::move(x)), m_y(std::move(y)), m_rot(std::move(rot)), m_field(field) {
+DefaultDriveCMD::DefaultDriveCMD(DriveSubsystem* subsystem, std::function<double()> x, 
+  std::function<double()> y, std::function<double()> rot, std::function<bool()> field) :
+  m_subsystem(subsystem), m_x(std::move(x)), m_y(std::move(y)), m_rot(std::move(rot)), m_field(std::move(field)) {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subsystem);
 }
@@ -23,7 +24,7 @@ void DefaultDriveCMD::Execute() {
   meters_per_second_t(m_x()),
   meters_per_second_t(m_y()), 
   radians_per_second_t(m_rot()),
-  m_field
+  m_field()
   );
 }
 

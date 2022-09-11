@@ -19,7 +19,7 @@
 class DefaultDriveCMD
     : public frc2::CommandHelper<frc2::CommandBase, DefaultDriveCMD> {
  public:
-  DefaultDriveCMD(DriveSubsystem*, std::function<double()>, std::function<double()>, std::function<double()>, bool);
+  DefaultDriveCMD(DriveSubsystem*, std::function<double()>, std::function<double()>, std::function<double()>, std::function<bool()>);
 
   void Initialize() override;
 
@@ -34,5 +34,5 @@ class DefaultDriveCMD
   std::function<double()> m_x;
   std::function<double()> m_y;
   std::function<double()> m_rot;
-  bool m_field;
+  std::function<bool()> m_field;
 };
