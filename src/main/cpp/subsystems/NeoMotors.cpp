@@ -1,6 +1,6 @@
 #include "subsystems/NeoMotors.h"
 
-using namespace FRC7110;
+using namespace hb;
 
 NeoMotor::NeoMotor(const int& Id, rev::CANSparkMax::MotorType type) : 
 rev::CANSparkMax(Id, type), rev::SparkMaxRelativeEncoder(GetEncoder()){

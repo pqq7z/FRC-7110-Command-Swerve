@@ -1,13 +1,11 @@
 #include "subsystems/CANCoder.h"
 
-using namespace FRC7110;
+using namespace hb;
 
-CANcode::CANcode(const int& Id, const double& offset) : CANCoder(Id){
-  ConfigSensorInitializationStrategy(BootToAbsolutePosition);
-  ConfigMagnetOffset(offset);
+CANcode::CANcode(const int& Id, const double& offset = 0) : CANCoder(Id), m_offset(offset) {
   printf("CANCoder: %i, reading %5.2f\n", Id, GetAbsolutePosition());
 }
 
 double CANcode::Get() {
-  return (GetPosition()/360) * 2 * wpi::numbers::pi - wpi::numbers::pi; // Returns radians
+  return ((GetAbsolutePosition() - m_offset)/360) * 2 * wpi::numbers::pi - wpi::numbers::pi; // Returns radians
 }
