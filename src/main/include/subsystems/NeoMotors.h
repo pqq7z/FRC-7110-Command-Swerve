@@ -2,7 +2,6 @@
 
 #include <rev/CANSparkMax.h>
 #include <wpi/numbers>
-#include <frc/controller/BangBangController.h>
 #include <frc/controller/PIDController.h>
 
 namespace hb {
@@ -28,13 +27,6 @@ namespace hb {
       double GetRate() const;
 
       /**
-       * @brief Sets the Motor RPM using frc::BangBangController
-       * 
-       * @param RPM 
-       */
-      void SetRPMBB(double&);
-
-      /**
        * @brief Sets the Motor RPM using frc2::PIDController
        * 
        * @param RPM
@@ -43,7 +35,6 @@ namespace hb {
 
     private:
       double m_Ratio = 1;
-      frc::BangBangController m_controller;
       frc2::PIDController m_PID{1 , 0 , 0};
   }; // class NeoMotor
 } // namespace hb

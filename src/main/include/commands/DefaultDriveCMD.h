@@ -6,8 +6,9 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/DriveSubsystem.h"
 #include <functional>
+
+#include "subsystems/DriveSubsystem.h"
 
 /**
  * An example command.

@@ -9,3 +9,4 @@ frc::Trajectory Auto::GetTrajectory1() {
   PathPlannerTrajectory path = PathPlanner::loadPath("TestPath", AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration);
   return path.asWPILibTrajectory();
   }
+  
