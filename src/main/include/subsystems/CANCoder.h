@@ -3,7 +3,7 @@
 #include <ctre/phoenix.h>
 #include <wpi/numbers>
 
-namespace FRC7110{
+namespace hb{
   class CANcode : CANCoder{
     public:
       explicit CANcode(const int& id, const double& offset);
@@ -15,5 +15,8 @@ namespace FRC7110{
        * @return -pi , pi (double)
        */
       double Get();
+
+    private:
+      const double m_offset;
     };
-} // namespace FRC7110
+} // namespace hb

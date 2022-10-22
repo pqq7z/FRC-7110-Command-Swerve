@@ -44,9 +44,9 @@ class SwerveModule {
           units::unit_t<radians_per_second_squared_t>(
               wpi::numbers::pi * 2.0);  // radians per second squared
 
-  FRC7110::NeoMotor m_driveMotor;
-  FRC7110::NeoMotor m_turningMotor;
-  FRC7110::CANcode m_turningEncoder;
+  hb::NeoMotor m_driveMotor;
+  hb::NeoMotor m_turningMotor;
+  hb::CANcode m_turningEncoder;
 
   frc2::PIDController m_drivePIDController{
       ModuleConstants::kPModuleDriveController, 0, 0};

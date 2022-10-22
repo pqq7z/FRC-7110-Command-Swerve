@@ -5,7 +5,7 @@
 #include <frc/controller/BangBangController.h>
 #include <frc/controller/PIDController.h>
 
-namespace FRC7110 {
+namespace hb {
   class NeoMotor : public rev::CANSparkMax, public rev::SparkMaxRelativeEncoder{
     public:
     
@@ -46,4 +46,4 @@ namespace FRC7110 {
       frc::BangBangController m_controller;
       frc2::PIDController m_PID{1 , 0 , 0};
   }; // class NeoMotor
-} // namespace FRC7110
+} // namespace hb

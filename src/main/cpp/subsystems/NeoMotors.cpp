@@ -1,15 +1,11 @@
 #include "subsystems/NeoMotors.h"
 
-using namespace FRC7110;
+using namespace hb;
 
 NeoMotor::NeoMotor(const int& Id, rev::CANSparkMax::MotorType type) : 
-rev::CANSparkMax(Id, type), rev::SparkMaxRelativeEncoder(GetEncoder()){
-  if (GetIdleMode() != rev::CANSparkMax::IdleMode::kCoast) {
-  SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
-  BurnFlash();}
-}
+rev::CANSparkMax(Id, type), rev::SparkMaxRelativeEncoder(GetEncoder()){}
 
-void NeoMotor::SetRPM2MPS(const double& Ratio){
+void NeoMotor::SetRPM2MPS(const double& Ratio) {
   m_Ratio = Ratio;
 }
 
