@@ -12,6 +12,10 @@
 #include <frc/motorcontrol/Spark.h>
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <wpi/numbers>
+#include <frc/controller/SimpleMotorFeedforward.h>
+#include <units/length.h>
+#include <units/voltage.h>
+#include <units/velocity.h>
 
 #include "Constants.h"
 #include "NeoMotors.h"
@@ -49,10 +53,11 @@ class SwerveModule {
   hb::CANcode m_turningEncoder;
 
   frc2::PIDController m_drivePIDController{
-      ModuleConstants::kPModuleDriveController, 0, 0};
+      ModuleConstants::kPModuleDriveController, 0.01, 0.005};
   frc::ProfiledPIDController<units::radians> m_turningPIDController{
       ModuleConstants::kPModuleTurningController,
       0.0,
       0.0,
       {kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration}};
+    frc::SimpleMotorFeedforward<units::meters> m_driveFeedforward{0.1_V, 2.67_V / 1_mps};
 };

@@ -37,8 +37,11 @@ RobotContainer::RobotContainer() {
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  m_drive.SetDefaultCommand(DefaultDriveCMD(&m_drive, [this] {return xSpeed;}, 
-          [this] {return ySpeed;}, [this] {return rot;}, [this] {return m_FieldRelative;}));
+  // m_drive.SetDefaultCommand(DefaultDriveCMD(&m_drive, [this] {return xSpeed;}, 
+  //         [this] {return ySpeed;}, [this] {return rot;}, [this] {return m_FieldRelative;}));
+
+    m_drive.SetDefaultCommand(frc2::RunCommand([this] {m_drive.Drive(units::meters_per_second_t(xSpeed),
+     units::meters_per_second_t(ySpeed), units::radians_per_second_t(rot), m_FieldRelative);}, {&m_drive}));
 
 }
 

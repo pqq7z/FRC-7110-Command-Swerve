@@ -46,7 +46,7 @@ class RobotContainer {
   frc::SlewRateLimiter<units::scalar> m_speedLimity{3 / 1_s};
   frc::SlewRateLimiter<units::scalar> m_speedLimitz{3 / 1_s};
 
-  double xSpeed = m_speedLimitx.Calculate(frc::ApplyDeadband(-m_driverController.GetLeftY(), 0.05));
+  double xSpeed = -m_speedLimitx.Calculate(frc::ApplyDeadband(m_driverController.GetLeftY(), 0.05));
   double ySpeed = m_speedLimity.Calculate(frc::ApplyDeadband(m_driverController.GetLeftX(), 0.05));
   double rot = m_speedLimitz.Calculate(frc::ApplyDeadband(m_driverController.GetRightX(), 0.05));
 

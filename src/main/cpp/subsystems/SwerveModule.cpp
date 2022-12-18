@@ -46,13 +46,15 @@ void SwerveModule::SetDesiredState(
   auto turnOutput = m_turningPIDController.Calculate(
       units::radian_t(m_turningEncoder.Get()), state.angle.Radians());
 
+  units::volt_t driveFF = m_driveFeedforward.Calculate(state.speed);
+
   // Set the motor outputs.
   if(fabs(state.speed.value()) < 0.001) {
     m_driveMotor.Set(0);
     m_turningMotor.Set(0);
   }
   else {
-    m_driveMotor.Set(driveOutput);
+    m_driveMotor.SetVoltage(units::volt_t(driveOutput) + driveFF);
     m_turningMotor.Set(turnOutput);
   }
 }

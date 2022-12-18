@@ -29,37 +29,37 @@ namespace DriveConstants {
     namespace CanIds{
     constexpr int kFrontLeftDriveMotorPort = 5;
     constexpr int kRearLeftDriveMotorPort = 7;
-    constexpr int kFrontRightDriveMotorPort = 9;
-    constexpr int kRearRightDriveMotorPort = 11;
+    constexpr int kFrontRightDriveMotorPort = 6;
+    constexpr int kRearRightDriveMotorPort = 8;
 
-    constexpr int kFrontLeftTurningMotorPort = 6;
-    constexpr int kRearLeftTurningMotorPort = 8;
-    constexpr int kFrontRightTurningMotorPort = 10;
-    constexpr int kRearRightTurningMotorPort = 12;
+    constexpr int kFrontLeftTurningMotorPort = 1;
+    constexpr int kRearLeftTurningMotorPort = 3;
+    constexpr int kFrontRightTurningMotorPort = 2;
+    constexpr int kRearRightTurningMotorPort = 4;
 
-    constexpr int kFrontLeftTurningEncoderPorts = 1;
+    constexpr int kFrontLeftTurningEncoderPorts = 0;
     constexpr int kRearLeftTurningEncoderPorts = 2;
-    constexpr int kFrontRightTurningEncoderPorts = 3;
-    constexpr int kRearRightTurningEncoderPorts = 4;
+    constexpr int kFrontRightTurningEncoderPorts = 1;
+    constexpr int kRearRightTurningEncoderPorts = 3;
 
     const int kPidgeonID = 0;
     } // namespace CanIds
 
-constexpr double kFrontLeftOffset = 0;
-constexpr double kRearLeftOffset = 0;
-constexpr double kFrontRightOffset = 0;
-constexpr double kRearRightOffset = 0;
+constexpr double kFrontLeftOffset = -146.6;
+constexpr double kRearLeftOffset = 138.25;
+constexpr double kFrontRightOffset = -74.53;
+constexpr double kRearRightOffset = 16.88;
 
 }  // namespace DriveConstants
 
 namespace ModuleConstants {
 constexpr double kGearRatio = 1/6.75;
-constexpr double kWheelDiameterMeters = 0.1016;
+constexpr double kWheelDiameterMeters = 0.05092958;
 constexpr double kDriveEncoderDistancePerPulse =
 kGearRatio * 2 * wpi::numbers::pi * kWheelDiameterMeters;
 
 constexpr double kPModuleTurningController = 1;
-constexpr double kPModuleDriveController = 1;
+constexpr double kPModuleDriveController = 0.5;
 }  // namespace ModuleConstants
 
 namespace AutoConstants {
