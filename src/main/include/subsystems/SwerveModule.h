@@ -52,6 +52,8 @@ class SwerveModule {
   hb::NeoMotor m_turningMotor;
   hb::CANcode m_turningEncoder;
 
+  int m_id;
+
   frc2::PIDController m_drivePIDController{
       ModuleConstants::kPModuleDriveController, 0.01, 0.005};
   frc::ProfiledPIDController<units::radians> m_turningPIDController{

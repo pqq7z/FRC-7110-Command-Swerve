@@ -37,19 +37,21 @@ RobotContainer::RobotContainer() {
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  // m_drive.SetDefaultCommand(DefaultDriveCMD(&m_drive, [this] {return xSpeed;}, 
-  //         [this] {return ySpeed;}, [this] {return rot;}, [this] {return m_FieldRelative;}));
+  // printf("x: %5.2f y: %5.2f rot: %5.2f\n", xSpeed, ySpeed, rot);
 
-    m_drive.SetDefaultCommand(frc2::RunCommand([this] {m_drive.Drive(units::meters_per_second_t(xSpeed),
-     units::meters_per_second_t(ySpeed), units::radians_per_second_t(rot), m_FieldRelative);}, {&m_drive}));
+  m_drive.SetDefaultCommand(DefaultDriveCMD(&m_drive, 
+          [this] {return (-m_speedLimitx.Calculate(frc::ApplyDeadband(m_driverController.GetLeftY(), 0.05)) * (double)AutoConstants::kMaxSpeed);}, 
+          [this] {return (m_speedLimity.Calculate(frc::ApplyDeadband(m_driverController.GetLeftX(), 0.05)) * (double)AutoConstants::kMaxSpeed);},
+          [this] {return (m_speedLimitz.Calculate(frc::ApplyDeadband(m_driverController.GetRightX(), 0.05)) * (double)AutoConstants::kMaxAngularSpeed);}, 
+          [this] {return m_FieldRelative;}));
 
 }
 
 void RobotContainer::ConfigureButtonBindings() {
-  frc2::JoystickButton(&m_driverController, frc::XboxController::Button::kLeftBumper).WhenPressed(
-    frc2::RunCommand([this] {m_drive.ZeroHeading();}, {&m_drive}));
-  frc2::JoystickButton(&m_driverController, frc::XboxController::Button::kRightBumper).WhenPressed(
-    [&] {m_FieldRelative = m_FieldRelative ? false : true;});
+  // frc2::JoystickButton(&m_driverController, frc::XboxController::Button::kLeftBumper).WhenPressed(
+  //   frc2::RunCommand([this] {m_drive.ZeroHeading();}, {&m_drive}));
+  // frc2::JoystickButton(&m_driverController, frc::XboxController::Button::kRightBumper).WhenPressed(
+  //   [&] {m_FieldRelative = m_FieldRelative ? false : true;});
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

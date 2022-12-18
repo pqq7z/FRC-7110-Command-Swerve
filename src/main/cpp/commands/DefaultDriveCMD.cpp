@@ -21,7 +21,7 @@ void DefaultDriveCMD::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void DefaultDriveCMD::Execute() {
-  printf("x: %5.2f y: %5.2f rot %5.2f\n", m_x(), m_y(), m_rot());
+  // printf("x: %5.2f y: %5.2f rot %5.2f\n", m_x(), m_y(), m_rot());
   m_subsystem->Drive(
   meters_per_second_t(m_x()),
   meters_per_second_t(m_y()), 

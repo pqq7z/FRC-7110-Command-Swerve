@@ -18,5 +18,7 @@ namespace hb{
 
     private:
       double m_offset;
+
+      int m_ID;
     };
 } // namespace hb

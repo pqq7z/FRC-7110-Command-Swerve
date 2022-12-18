@@ -22,7 +22,7 @@ DriveSubsystem::DriveSubsystem()
 
       m_rearLeft{
           kRearLeftDriveMotorPort,       kRearLeftTurningMotorPort,
-          kRearLeftTurningEncoderPorts,  kRearRightOffset},
+          kRearLeftTurningEncoderPorts,  kRearLeftOffset},
 
       m_frontRight{
           kFrontRightDriveMotorPort,       kFrontRightTurningMotorPort,

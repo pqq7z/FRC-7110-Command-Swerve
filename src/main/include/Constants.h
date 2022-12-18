@@ -45,10 +45,10 @@ namespace DriveConstants {
     const int kPidgeonID = 0;
     } // namespace CanIds
 
-constexpr double kFrontLeftOffset = -146.6;
-constexpr double kRearLeftOffset = 138.25;
-constexpr double kFrontRightOffset = -74.53;
-constexpr double kRearRightOffset = 16.88;
+constexpr double kFrontLeftOffset = -142.03; //encoder 0
+constexpr double kRearLeftOffset = 20.83; //encoder 2
+constexpr double kFrontRightOffset = 109.6; //encoder 1
+constexpr double kRearRightOffset = 21.09; //encoder 3
 
 }  // namespace DriveConstants
 
@@ -67,7 +67,7 @@ using radians_per_second_squared_t =
     units::compound_unit<units::radians,
                          units::inverse<units::squared<units::second>>>;
 
-constexpr auto kMaxSpeed = units::meters_per_second_t(4.4);
+constexpr auto kMaxSpeed = units::meters_per_second_t(/**4.4**/ 1.5);
 constexpr auto kMaxAcceleration = units::meters_per_second_squared_t(4.4);
 constexpr auto kMaxAngularSpeed = units::radians_per_second_t(3.142);
 constexpr auto kMaxAngularAcceleration = units::unit_t<radians_per_second_squared_t>(3.142);
